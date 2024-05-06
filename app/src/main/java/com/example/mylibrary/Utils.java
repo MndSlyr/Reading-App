@@ -80,6 +80,10 @@ public class Utils {
         return wantToReadBooks.add(book);
     }
     public boolean addToFavourites(Book book){
-        return addToFavourites(book);
+        return favouriteBooks.add(book);
+    }
+
+    public boolean addToCurrentlyReadingBooks(Book book) {
+        return currentlyReadingBooks.add(book);
     }
 }
