@@ -18,7 +18,7 @@ public class BookActivity extends AppCompatActivity {
 
     public static final String BOOK_ID_KEY = "bookId";
     private TextView txtBookName , txtAuthorName , txtPages , txtDescription;
-    private Button btnAddToCurrentlyReading , btnAddToWantToReadList , btnToAddToFavouritesList;
+    private Button btnAddToAlreadyReadList , btnAddToCurrentlyReading , btnAddToWantToReadList , btnToAddToFavouritesList;
     private ImageView bookImage;
 
     @Override
@@ -153,10 +153,10 @@ public class BookActivity extends AppCompatActivity {
         }
 
         if(existInAlreadyReadBooks){
-            btnAddToWantToReadList.setEnabled(false);
+            btnAddToAlreadyReadList.setEnabled(false);
         }
         else {
-            btnAddToWantToReadList.setOnClickListener(new View.OnClickListener() {
+            btnAddToAlreadyReadList.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if(Utils.getInstance().addToAlreadyRead(book)){
@@ -189,10 +189,10 @@ public class BookActivity extends AppCompatActivity {
         txtPages = findViewById(R.id.txtPages);
         txtDescription = findViewById(R.id.txtdescription);
 
-        btnAddToCurrentlyReading = findViewById(R.id.btnCurrentlyReading);
-        btnAddToWantToReadList = findViewById(R.id.btnToAlreadyReadList);
+        btnAddToCurrentlyReading = findViewById(R.id.btnAddToCurrentlyReading);
+        btnAddToWantToReadList = findViewById(R.id.btnAddToWantToReadList);
         btnToAddToFavouritesList = findViewById(R.id.btnToAddToFavouritesList);
-        btnAddToWantToReadList = findViewById(R.id.btnToAlreadyReadList);
+        btnAddToAlreadyReadList = findViewById(R.id.btnToAlreadyReadList);
 
         bookImage = findViewById(R.id.bookImage);
     }

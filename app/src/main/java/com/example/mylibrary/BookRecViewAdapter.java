@@ -2,7 +2,9 @@ package com.example.mylibrary;
 
 import static com.example.mylibrary.BookActivity.BOOK_ID_KEY;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -76,13 +78,23 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
                     holder.btnDelete.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            if(Utils.getInstance().removeFromAlreadyRead(books.get(position))){
-                                Toast.makeText(mContext , "Book removed" , Toast.LENGTH_SHORT).show();
-                                notifyDataSetChanged();
-                            }
-                            else{
-                                Toast.makeText(mContext , "Something went wrong, Please try again!" , Toast.LENGTH_SHORT).show();
-                            }
+                            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                            builder.setMessage("Are you sure you want to delete " + books.get(position).getName() + "?");
+                            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    if(Utils.getInstance().removeFromAlreadyRead(books.get(position))){
+                                        Toast.makeText(mContext , "Book Removed" , Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                }
+                            });
+                            builder.create().show();
                         }
                     });
                 }
